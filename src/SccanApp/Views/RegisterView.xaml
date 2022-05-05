@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SccanApp.RegisterView"
+             BackgroundColor="{StaticResource PrimaryColor}">
+  
+    <Grid>
+        <ScrollView>
+        <StackLayout  Margin="5">
+                <Image Margin="10"  Source="logo.png" HeightRequest="65" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="CenterAndExpand"/>
+
+            <StackLayout Margin="0,20">
+                <Label Style="{StaticResource welcome}" FontSize="32" Text="Register SccanApp"/>
+            </StackLayout>
+
+            <StackLayout>
+
+                <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Full Name"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                        <Entry Text="{Binding User.Name}" Placeholder="Enter name" Keyboard="Text"
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" />
+
+                </Grid>
+
+                <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Phone number"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                        <Entry Text="{Binding User.PhoneNumber}"  Placeholder="(xx) xxx-xxx-xxx" Keyboard="Telephone"
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" />
+
+                </Grid>
+
+                <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Email"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                        <Entry  Text="{Binding User.Email}"  Placeholder="@totvs.com.br" Keyboard="Email"
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" />
+
+                </Grid>
+
+                <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Username"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                        <Entry Text="{Binding User.UserName}"  Placeholder="Enter username" 
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" />
+
+                </Grid>
+
+                <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Password"/>
+                <Grid Margin="0,5">
+                    <Frame BackgroundColor="White" Opacity="0.3"  CornerRadius="5"/>
+                        <Entry  Text="{Binding User.Password}" Placeholder="Enter password" 
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" IsPassword="True"/>
+
+                </Grid>
+            </StackLayout>
+
+                <Button Margin="0,15" Command="{Binding RegisterCommand}" BackgroundColor="{StaticResource SecondaryColor}"
+                    Text="Register" TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansBold"/>
+
+          
+        </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

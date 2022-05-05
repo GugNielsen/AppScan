@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SccanApp.RetrieveAccountView"
+    BackgroundColor="{StaticResource PrimaryColor}">
+
+    <Grid>
+        <StackLayout Margin="20">
+            <Image Margin="5"  Source="logo.png" HeightRequest="65" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="CenterAndExpand"/>
+
+            <StackLayout Margin="0,20">
+                <Label Style="{StaticResource welcome}" FontSize="32" Text="Retrieve Account"/>
+              
+            </StackLayout>
+
+            <StackLayout>
+                <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="User  Email"/>
+                <Grid Margin="0,5">
+                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                    <Entry  Text="{Binding User.Email}"   Placeholder="@totvs.com.br" 
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" />
+
+                </Grid>
+
+               
+            </StackLayout>
+
+            <Button Command="{Binding RetriveAccountCommand}" Margin="0,15" BackgroundColor="{StaticResource SecondaryColor}"
+                    Text="Go" TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansBold"/>
+
+          
+        </StackLayout>
+    </Grid>
+</ContentPage>  
