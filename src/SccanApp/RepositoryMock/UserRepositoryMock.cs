@@ -84,11 +84,22 @@ namespace SccanApp.RepositoryMock
             return this.UserList;
         }
 
-        public User GetUserByEmailListMockRepository( string email)
+        public User GetUserByEmailListMockRepository(string email)
         {
-          var userlist =  this.UserList;
+            var userlist = this.UserList;
 
-            var user = userlist.FirstOrDefault(x=>x.Email.Equals(email));
+            var user = userlist.FirstOrDefault(x => x.Email.Equals(email));
+            return user;
+        }
+
+        public User UpdateUserMockRepository(User user)
+        {
+           var userMock = GetUserByEmailListMockRepository(user.Email);
+           
+            RemoveUserMockrepistory(userMock);
+
+            InsertUserMockrepistory(user);
+
             return user;
         }
     }

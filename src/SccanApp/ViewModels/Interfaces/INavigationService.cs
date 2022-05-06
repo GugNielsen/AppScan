@@ -14,5 +14,6 @@ namespace SccanApp.ViewModels.Interfaces
 		Task NavigateToRetrieveAccount();
 		Task NavigateToMain();
 		Task NavigateToProfile(User user);
+		Task NavigateToEditeUser(User user);
 	}
 }

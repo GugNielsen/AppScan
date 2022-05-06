@@ -14,5 +14,7 @@ namespace SccanApp.RepositoryMock.Interfaces
         List<HomeWork> RemoveHomeWorkMockrepistory(HomeWork homeWork);
 
          List<HomeWork> GetAllHomeWorkListMockRepository();
+
+        HomeWork GetHomeWorkByObj(Object obj);
     }
 }

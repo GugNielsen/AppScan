@@ -34,13 +34,27 @@ namespace SccanApp.RepositoryMock
 
         public List<HomeWork> RemoveHomeWorkMockrepistory(HomeWork homeWork)
         {
-            this.HomeWorkList.Remove(homeWork);
+            var item = this.HomeWorkList.FirstOrDefault(x => x.FileName == homeWork.FileName);
+            if (item != null)
+            {
+                HomeWorkList.Remove(item);
+            }
+         
             return this.HomeWorkList;
         }
 
         public List<HomeWork> GetAllHomeWorkListMockRepository()
         {
             return this.HomeWorkList;
+        }
+
+        public HomeWork GetHomeWorkByObj (Object obj)
+        {
+            var list  = GetAllHomeWorkListMockRepository();
+
+            var homeWork = list.FirstOrDefault(x=>x.Equals(obj));
+
+            return homeWork;
         }
 
 

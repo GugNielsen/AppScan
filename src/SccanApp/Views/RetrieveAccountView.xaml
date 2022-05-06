@@ -18,7 +18,7 @@
                        FontSize="16" Text="User  Email"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry  Text="{Binding User.Email}"   Placeholder="@totvs.com.br" 
+                    <Entry IsEnabled='True'  Text="{Binding User.Email}"   Placeholder="@totvs.com.br" 
                            TextColor="{StaticResource SecondaryColor}" Margin="5,0"
                            PlaceholderColor="Gray" />
 

@@ -19,7 +19,7 @@
                        FontSize="16" Text="Username"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry Text="{Binding UserName}" BackgroundColor="Transparent" Placeholder="Enter username" 
+                    <Entry Text="{Binding UserName}" BackgroundColor="Transparent" IsEnabled='True' Placeholder="Enter username" 
                            TextColor="{StaticResource SecondaryColor}" Margin="5,0"
                            PlaceholderColor="Gray" />
 
@@ -29,7 +29,7 @@
                        FontSize="16" Text="Password"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry Text="{Binding Password}" BackgroundColor="Transparent" Placeholder="Enter password" 
+                    <Entry Text="{Binding Password}" BackgroundColor="Transparent"  IsEnabled='True' Placeholder="Enter password" 
                            TextColor="{StaticResource SecondaryColor}" Margin="5,0"
                            PlaceholderColor="Gray" IsPassword="True"/>
 

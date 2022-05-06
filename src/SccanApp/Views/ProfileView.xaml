@@ -2,10 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SccanApp.ProfileView"
-               BackgroundColor="{StaticResource PrimaryColor}"
+               xmlns:local="clr-namespace:SccanApp"
+              xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+                       BackgroundColor="{StaticResource PrimaryColor}"
             >
     <ScrollView VerticalScrollBarVisibility="Never" HorizontalScrollBarVisibility="Never">
-       
+
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" Padding="20,0">
 
             <Frame Grid.Row="0" BorderColor="White"  VerticalOptions="Start" HeightRequest="160" HasShadow="False" CornerRadius="20" Margin="0,45,0,20" Padding="0" IsClippedToBounds="True">
@@ -18,12 +20,13 @@
 
             <Label Grid.Row="2" Text="{Binding User.Name}" Style="{StaticResource welcome}" HorizontalTextAlignment="Center" Margin="0,20,0,0" FontSize="22"/>
 
-            <Grid Grid.Row="3" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0">
+            <Grid Grid.Row="3" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0">
                 <Button Grid.Column="0" ImageSource="location.png" WidthRequest="18" HeightRequest="18" CornerRadius="9" HorizontalOptions="Center" BackgroundColor="#9192b7"/>
                 <Label Grid.Column="1" Text="{Binding User.UserName}"  FontFamily="OpenSansRegular" TextColor="#383b67"/>
                 <Button Grid.Column="2" ImageSource="age.png" Margin="10,0,0,0" WidthRequest="18" HeightRequest="18" CornerRadius="9" HorizontalOptions="Center" BackgroundColor="#9192b7"/>
                 <Label Grid.Column="3" Text="{Binding User.Email}" FontFamily="OpenSansRegular" TextColor="#383b67"/>
-                <Button Grid.Column="4" Text="Edite" BorderWidth="0"  BorderColor="Transparent" BackgroundColor="Transparent" TextColor="{StaticResource SecondaryColor}" FontFamily="OpenSansBold" Margin="5,0,0,0" CornerRadius="10" FontSize="11"/>
+                <Button Grid.Column="4" Command="{Binding EditeUserCommand}" Text="Edite" BorderWidth="0"  BorderColor="Transparent" BackgroundColor="Transparent" TextColor="{StaticResource SecondaryColor}" FontFamily="OpenSansBold" Margin="5,0,0,0" CornerRadius="10" FontSize="11"/>
+                <Button Grid.Column="5" Command="{Binding RemoveUserCommand}" Text="Remove" BorderWidth="0"  BorderColor="Transparent" BackgroundColor="Transparent" TextColor="Red" FontFamily="OpenSansBold" Margin="5,0,0,0" CornerRadius="10" FontSize="11"/>
 
             </Grid>
 
@@ -31,14 +34,21 @@
             <Label Grid.Row="5" FontFamily="OpenSansRegular" TextColor="#383b67" HorizontalTextAlignment="Start" FontSize="15" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&#10;&#10;Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
 
             <Label Grid.Row="6" Text="PDFworks" Style="{StaticResource welcome}" Margin="0,30,0,10" FontSize="20"/>
-            <CollectionView Grid.Row="7" HorizontalScrollBarVisibility="Never"
+            <syncfusion:SfListView x:Name="listView" 
+                Grid.Row="7" Orientation="Horizontal"
+                 LoadMoreOption="Auto"
                  ItemsSource="{Binding HomeWorksList}" Margin="0,0,-10,0"
-                 HeightRequest="180"
-                 ItemsLayout="HorizontalList">
-                <CollectionView.ItemTemplate>
+                 TapCommand="{Binding RemoveHomeWorkCommand}"
+                 HeightRequest="200"
+                    HorizontalOptions="StartAndExpand"
+                    WidthRequest="400"
+                   ItemSize="220"
+                    ItemSpacing="30"
+                 >
+                <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout  Padding="0,0,15,0">
-                            <Frame  CornerRadius="13" HorizontalOptions="Start" BorderColor="#c6c1ea" HasShadow="False">
+                            <Frame IsClippedToBounds="true" CornerRadius="13" HorizontalOptions="Start" BorderColor="#c6c1ea" HasShadow="False">
                                 <Grid HeightRequest="80" WidthRequest="180" RowDefinitions="*,*">
                                     <Image Margin="10" Source="folder.png" HorizontalOptions="CenterAndExpand" Grid.Column="0"  HeightRequest="60" WidthRequest="60" />
                                     <Label VerticalTextAlignment="Center" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" HorizontalTextAlignment="Start" HorizontalOptions="CenterAndExpand" Text="{Binding FileName}" FontSize="11" FontFamily="OpenSansRegular" TextColor="#383b67"/>
@@ -46,17 +56,16 @@
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-           
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+
             <BoxView Grid.Row="8" HorizontalOptions="FillAndExpand" HeightRequest="1"  Margin="-20,0,0,20" Color="#eaeaf0"/>
             <Grid ColumnDefinitions="Auto,*" HorizontalOptions="FillAndExpand" Grid.Row="9" Margin="0,0,0,20">
-                <Button Grid.Column="0"  Text="Add Docs" BackgroundColor="White" ImageSource="medal.png" WidthRequest="130" CornerRadius="18" Style="{StaticResource welcome}" BorderColor="Silver" Margin="0,0,10,0" HeightRequest="50" BorderWidth="1"/>
-                <Button Grid.Column="1" Text="Get Sccaner" CornerRadius="18" BackgroundColor="{StaticResource SecondaryColor}"  TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansBold" HeightRequest="50" BorderWidth="1"/>
+                <Button Command="{Binding OpenPDFCommand}" Grid.Column="0"  Text="Add Docs" BackgroundColor="White" ImageSource="medal.png" WidthRequest="130" CornerRadius="18" Style="{StaticResource welcome}" BorderColor="Silver" Margin="0,0,10,0" HeightRequest="50" BorderWidth="1"/>
+                <Button Command="{Binding GetSccanCommand}" Grid.Column="1" Text="Get Sccaner" CornerRadius="18" BackgroundColor="{StaticResource SecondaryColor}"  TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansBold" HeightRequest="50" BorderWidth="1"/>
             </Grid>
 
         </Grid>
     </ScrollView>
 
 </ContentPage>
-

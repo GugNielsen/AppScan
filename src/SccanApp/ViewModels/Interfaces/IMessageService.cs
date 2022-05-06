@@ -9,5 +9,6 @@ namespace SccanApp.ViewModels.Interfaces
 	public interface IMessageService
 	{
 		Task ShowAsync(string message);
+		Task<bool> ShowBoolAssyn(string message);
 	}
 }

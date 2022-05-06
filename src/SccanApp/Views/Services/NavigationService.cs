@@ -38,7 +38,12 @@ namespace SccanApp.Views.Services
 			await App.Current.MainPage.Navigation.PushAsync(new ProfileView(user));
 		}
 
-        public NavigationService()
+		public async Task NavigateToEditeUser(User user)
+		{
+			await App.Current.MainPage.Navigation.PushAsync(new EditeUserView(user));
+		}
+
+		public NavigationService()
 		{
 		}
 	}

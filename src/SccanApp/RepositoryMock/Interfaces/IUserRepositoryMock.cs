@@ -12,7 +12,7 @@ namespace SccanApp.RepositoryMock.Interfaces
         List<User> InsertUserMockrepistory(User user);
         List<User> RemoveUserMockrepistory(User user);
         List<User> GetAllUserListMockRepository();
-
+        User UpdateUserMockRepository(User user);
        User GetUserByEmailListMockRepository(string email);
 
 

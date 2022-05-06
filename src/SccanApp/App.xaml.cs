@@ -16,6 +16,8 @@ public partial class App : Application
 		DependencyService.Register<IUserRepositoryMock, UserRepositoryMock>();
 		DependencyService.Register<IHomeWorckRepositoryMock, HomeWorckRepositoryMock>();
 
+		//MainPage = new NavigationPage(new LoginView());
+
 		MainPage = new NavigationPage(new LoginView());
 	}
 }

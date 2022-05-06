@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace SccanApp.ViewModels
 {
@@ -41,19 +42,43 @@ namespace SccanApp.ViewModels
             }
         }
 
+        public ICommand RemoveUserCommand
+        {
+            get;
+            set;
+        }
+
+        public ICommand EditeUserCommand
+        {
+            get;
+            set;
+        }
+
+        public ICommand RemoveHomeWorkCommand
+        {
+            get;
+            set;
+        }
+
+        public ICommand GetSccanCommand
+        {
+            get;
+            set;
+        }
+
+        public ICommand OpenPDFCommand
+        {
+            get;
+            set;
+        }
+
+
         private readonly IMessageService _messageService;
         private readonly INavigationService _navigationService;
         private readonly IHomeWorckRepositoryMock _homeWorckRepositoryMock;
+        private readonly IUserRepositoryMock _userRepositoryMock;
         public ObservableCollection<HomeWork> HomeWorksList { get; set; }
-        public ProfileViewModel()
-        {
-            HomeWorksList = new ObservableCollection<HomeWork>()
-            {
-                new HomeWork { FileName = "salao_speakingmeeting.docx" },
-                new HomeWork { FileName = "cozinha_writingnotes.docx" },
-                new HomeWork { FileName = "contaluz_writingnotes.docx" }
-            };
-        }
+     
 
         public ProfileViewModel(User user)
         {
@@ -62,11 +87,22 @@ namespace SccanApp.ViewModels
             this._messageService = DependencyService.Get<IMessageService>();
             this._navigationService = DependencyService.Get<INavigationService>();
             this._homeWorckRepositoryMock = DependencyService.Get<IHomeWorckRepositoryMock>();
+            this._userRepositoryMock = DependencyService.Get<IUserRepositoryMock>();
 
-        
+            this.RemoveUserCommand = new Command(this.LoadRemoveUser);
+            this.EditeUserCommand = new Command(this.LoadEditeUser);
+            this.RemoveHomeWorkCommand = new Command<object>((x) => this.RemoveHomeWork(x));
+
+            this.GetSccanCommand = new Command(this.GetSccan);
+            this.OpenPDFCommand = new Command(this.OpenPDF);
+
+
+
             LoadList();
 
         }
+
+   
 
         void LoadList()
         {
@@ -75,8 +111,64 @@ namespace SccanApp.ViewModels
 
             foreach (var item in list)
             {
-                HomeWorksList.Add(item); 
+                HomeWorksList.Add(item);
             }
+        }
+
+        private async void LoadRemoveUser()
+        {
+            RemoveUser(user);
+        }
+        private async void RemoveUser(User user)
+        {
+            var resMsg = await _messageService.ShowBoolAssyn("Deseja Deletar sua conta");
+
+            if (resMsg)
+            {
+                _userRepositoryMock.RemoveUserMockrepistory(user);
+
+                await _messageService.ShowAsync("Conta deletada com Sucesso");
+
+                await _navigationService.NavigateToLogin();
+            }
+        }
+
+        private async void LoadEditeUser()
+        {
+            EditeUser(user);
+        }
+        private async void EditeUser(User user)
+        {
+          await _navigationService.NavigateToEditeUser(user);
+        }
+
+        private  async void RemoveHomeWork (object obt)
+        {
+            var resMsg = await _messageService.ShowBoolAssyn("Deseja Deletar esse item");
+           
+            if (resMsg)
+            {
+                var eventArgs = obt as Syncfusion.Maui.ListView.ItemTappedEventArgs;
+                var homeWork = (eventArgs.ItemData as HomeWork);
+
+                _homeWorckRepositoryMock.RemoveHomeWorkMockrepistory(homeWork);
+                this.HomeWorksList.Remove(homeWork);
+
+                await _messageService.ShowAsync("Item deletado com Sucesso");
+
+            }
+
+        }
+
+        private async void GetSccan()
+        {
+            await _messageService.ShowAsync("Não foi possivel acessar devido a baixa funcionalidade do preview do MAIU");
+        }
+
+
+        private async void OpenPDF()
+        {
+            await _messageService.ShowAsync("Não foi possivel acessar devido a baixa funcionalidade do preview do MAIU");
         }
     }
 }

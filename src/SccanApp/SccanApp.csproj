@@ -62,6 +62,9 @@
 	  <MauiXaml Update="App.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\EditeUserView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\LoginView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -77,6 +80,11 @@
 	  <MauiXaml Update="Views\ScannerListView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Syncfusion.Maui.ListView" Version="20.1.52-preview" />
+		<PackageReference Include="Syncfusion.Pdf.NET" Version="20.1.0.52" />
 	</ItemGroup>
 
 </Project>

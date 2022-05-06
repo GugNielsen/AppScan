@@ -15,6 +15,11 @@ namespace SccanApp.Views.Services
 			await App.Current.MainPage.DisplayAlert("SccanApp", message, "ok");
 		}
 
+		public async Task<bool> ShowBoolAssyn(string message)
+        {
+			return await App.Current.MainPage.DisplayAlert("SccanApp", message, "Yes","No");
+		}
+
 
 		public MessageService()
 		{

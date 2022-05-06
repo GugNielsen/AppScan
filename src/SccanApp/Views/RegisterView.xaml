@@ -19,7 +19,7 @@
                        FontSize="16" Text="Full Name"/>
                 <Grid Margin="0,5">
                     <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                        <Entry Text="{Binding User.Name}" Placeholder="Enter name" Keyboard="Text"
+                        <Entry IsEnabled='True'  Text="{Binding User.Name}" Placeholder="Enter name" Keyboard="Text"
                            TextColor="{StaticResource SecondaryColor}" Margin="5,0"
                            PlaceholderColor="Gray" />
 

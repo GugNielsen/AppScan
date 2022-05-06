@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SccanApp.EditeUserView"
+               BackgroundColor="{StaticResource PrimaryColor}">
+
+    <Grid>
+        <ScrollView>
+            <StackLayout  Margin="5">
+                <Image Margin="10"  Source="logo.png" HeightRequest="65" BackgroundColor="{StaticResource PrimaryColor}" HorizontalOptions="CenterAndExpand"/>
+
+                <StackLayout Margin="0,20">
+                    <Label Style="{StaticResource welcome}" FontSize="32" Text="Edite User"/>
+                </StackLayout>
+
+                <StackLayout>
+
+                    <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Full Name"/>
+                    <Grid Margin="0,5">
+                        <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                        <Entry IsEnabled='True'  Text="{Binding User.Name}" Placeholder="Enter name" Keyboard="Text"
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" />
+
+                    </Grid>
+
+                    <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Phone number"/>
+                    <Grid Margin="0,5">
+                        <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                        <Entry IsEnabled='True'  Text="{Binding User.PhoneNumber}"  Placeholder="(xx) xxx-xxx-xxx" Keyboard="Telephone"
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" />
+
+                    </Grid>
+
+                    <Label FontFamily="OpenSansRegular" TextColor="{StaticResource SecondaryColor}" 
+                       FontSize="16" Text="Username"/>
+                    <Grid Margin="0,5">
+                        <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
+                        <Entry IsEnabled='True'  Text="{Binding User.UserName}"  Placeholder="Enter username" 
+                           TextColor="{StaticResource SecondaryColor}" Margin="5,0"
+                           PlaceholderColor="Gray" />
+
+                    </Grid>
+
+                </StackLayout>
+
+                <Button Margin="0,15" Command="{Binding EditeUserCommand}" BackgroundColor="{StaticResource SecondaryColor}"
+                    Text="Update" TextColor="{StaticResource PrimaryColor}" FontFamily="OpenSansBold"/>
+
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
